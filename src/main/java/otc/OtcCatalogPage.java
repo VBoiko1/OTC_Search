@@ -12,46 +12,40 @@ import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class OtcCatalogPage {
-
+    private static final String PRODUCT_SELECTOR = "div[itemtype='http://schema.org/Product']";
+    private static final String NAME_SELECTOR = "a[itemprop='name']";
+    private static final String PRICE_SELECTOR = "h3[itemprop='price']";
     // Карточки товаров
-    private final ElementsCollection products =
-            $$("div[itemtype='http://schema.org/Product']");
+    private final ElementsCollection products = $$(PRODUCT_SELECTOR);
 
     public OtcCatalogPage waitListProduct() {
         products.shouldBe(sizeGreaterThan(0));
         return this;
     }
 
-    //  Сбор данных
+    //  Метод сбора данных
     public List<Map<String, String>> collectProductsData() {
 
         List<Map<String, String>> result = new ArrayList<>();
 
-        // Получаем количество найденных товаров
-        int productsCount = products.size();
-
-        // Классический цикл for
-        for (int i = 0; i < productsCount; i++) {
-
-            // Берём конкретную карточку по индексу
+        for (int i = 0; i < products.size(); i++) {
+            // Карточка по индексу
             SelenideElement product = products.get(i);
 
-            // Достаём имя товара
             String name = product
-                    .$("a[itemprop='name']")
+                    .$(NAME_SELECTOR)
                     .getText();
 
-            // Достаём цену
             String price = product
-                    .$("h3[itemprop='price']")
+                    .$(PRICE_SELECTOR)
                     .getText();
 
-            // Складываем данные в Map
+
             Map<String, String> productData = new HashMap<>();
             productData.put("name", name);
             productData.put("price", price);
 
-            // Добавляем Map в итоговый список
+
             result.add(productData);
         }
 

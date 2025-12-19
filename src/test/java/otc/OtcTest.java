@@ -5,8 +5,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,19 +13,14 @@ import java.util.Map;
 import static com.codeborne.selenide.Selenide.open;
 
 
-
 public class OtcTest {
 
-
-
     OtcHomePage otcHomePage = new OtcHomePage();
-
     OtcCatalogPage otcCatalogPage = new OtcCatalogPage();
 
     @BeforeAll
     public static void setup() {
 
-        // Установка ChromeOptions для Selenide
         ChromeOptions options = new ChromeOptions();
 
         Map<String, Object> prefs = new HashMap<>();
@@ -38,6 +31,7 @@ public class OtcTest {
         options.addArguments("start-maximized");
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         // options.addArguments("--incognito"); // Режим инкогнито.
+
         // Применяем опции к Selenide
         Configuration.browserCapabilities = options;
     }
@@ -50,7 +44,7 @@ public class OtcTest {
         otcHomePage
                 .waitSearchString()
                 .openCityFilter()
-                .selectCity("Краснодар",true)
+                .selectCity("Краснодар", true)
                 .selectCity("Москва", false)
                 .applyFilter("Краснодар")
                 .setSearchValue("Принтер")
@@ -62,10 +56,8 @@ public class OtcTest {
                         .collectProductsData();
 
 
-
-
         FileUtils.saveToCsv(products, "target/products.csv");
-        products.forEach(System.out::println);
+        //products.forEach(System.out::println);
     }
 }
 
