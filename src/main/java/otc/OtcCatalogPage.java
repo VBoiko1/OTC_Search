@@ -2,6 +2,7 @@ package otc;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import helpers.BasePage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,14 +14,13 @@ import java.util.Map;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class OtcCatalogPage {
+public class OtcCatalogPage extends BasePage {
+
     private static final String PRODUCT_SELECTOR = "div[itemtype='http://schema.org/Product']";
     private static final String NAME_SELECTOR = "a[itemprop='name']";
     private static final String PRICE_SELECTOR = "h3[itemprop='price']";
     // Карточки товаров
     private final ElementsCollection products = $$(PRODUCT_SELECTOR);
-
-    private static final Logger log = LoggerFactory.getLogger(OtcCatalogPage.class);
 
     public OtcCatalogPage waitListProduct() {
         products.shouldBe(sizeGreaterThan(0));

@@ -1,12 +1,9 @@
 package otc;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
+import helpers.FileUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

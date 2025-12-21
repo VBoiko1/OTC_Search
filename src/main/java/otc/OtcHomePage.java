@@ -2,13 +2,14 @@ package otc;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import helpers.BasePage;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
-public class OtcHomePage {
+public class OtcHomePage extends BasePage {
 
     // Поле [Строка поиска]
     private final SelenideElement searchString = $(".mantine-Input-input");
@@ -30,8 +31,6 @@ public class OtcHomePage {
 
     //Поле фильтра города
     private final SelenideElement shouldHaveCity = $("div[class*='SeoRegionSelector-module__']");
-
-    private static final Logger log = LoggerFactory.getLogger(OtcHomePage.class);
 
     public OtcHomePage waitSearchString() {
         searchString.shouldBe(visible);
