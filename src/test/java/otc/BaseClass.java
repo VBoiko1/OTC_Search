@@ -31,7 +31,8 @@ public class BaseClass {
         // Применяем опции к Selenide
         Configuration.browserCapabilities = options;
     }
-    public BaseClass(){
+
+    public BaseClass() {
         ConfigContainer configContainer = ConfigContainer.getInstance();
         configContainer.loadProperties();
         this.config = configContainer;

@@ -10,10 +10,10 @@ import java.util.Map;
 import static com.codeborne.selenide.Selenide.open;
 
 
-public class OtcTest extends BaseClass{
+public class OtcTest extends BaseClass {
 
     @Test
-    @DisplayName("Открыть сайт , проверка наличия элемента 'Строка поиска'")
+    @DisplayName("Поиск товаров по городу Краснодар и экспорт результатов в CSV")
     public void openOTCMainPage() {
         String url = "https://otc.ru/";
         open(url);

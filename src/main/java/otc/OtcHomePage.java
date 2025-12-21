@@ -3,10 +3,9 @@ package otc;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import helpers.BasePage;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class OtcHomePage extends BasePage {
@@ -44,18 +43,18 @@ public class OtcHomePage extends BasePage {
         return this;
     }
 
-    public OtcHomePage startSearch(){
+    public OtcHomePage startSearch() {
         buttonSearch.click();
         return this;
     }
 
-    public OtcHomePage openCityFilter(){
+    public OtcHomePage openCityFilter() {
         filterCity.click();
         searchCity.shouldBe(visible);
         return this;
     }
 
-    public OtcHomePage applyFilter(String city){
+    public OtcHomePage applyFilter(String city) {
         buttonFilled.click();
         shouldHaveCity.shouldBe(text(city));
         return this;
@@ -65,7 +64,7 @@ public class OtcHomePage extends BasePage {
     // Выбрать любой город по названию
     public OtcHomePage selectCity(String cityName, Boolean check) {
         log.info("Выбирает город {}", cityName);
-        log.info("Флаг чек-бокса {}",check);
+        log.info("Флаг чек-бокса {}", check);
 
         allCityCheckbox.findBy(text(cityName))
                 .$("input")
@@ -75,7 +74,7 @@ public class OtcHomePage extends BasePage {
         return this;
     }
 
-    public OtcHomePage waitSearchCatalog(){
+    public OtcHomePage waitSearchCatalog() {
         $x("//span[normalize-space()='Поиск']")
                 .shouldBe(visible);
         return this;
