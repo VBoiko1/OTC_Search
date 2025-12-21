@@ -2,6 +2,8 @@ package otc;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -29,7 +31,7 @@ public class OtcHomePage {
     //Поле фильтра города
     private final SelenideElement shouldHaveCity = $("div[class*='SeoRegionSelector-module__']");
 
-    //
+    private static final Logger log = LoggerFactory.getLogger(OtcHomePage.class);
 
     public OtcHomePage waitSearchString() {
         searchString.shouldBe(visible);
@@ -63,6 +65,8 @@ public class OtcHomePage {
 
     // Выбрать любой город по названию
     public OtcHomePage selectCity(String cityName, Boolean check) {
+        log.info("Выбирает город {}", cityName);
+        log.info("Флаг чек-бокса {}",check);
 
         allCityCheckbox.findBy(text(cityName))
                 .$("input")
@@ -72,7 +76,7 @@ public class OtcHomePage {
         return this;
     }
 
-    public OtcHomePage waitSearchCAtalog(){
+    public OtcHomePage waitSearchCatalog(){
         $x("//span[normalize-space()='Поиск']")
                 .shouldBe(visible);
         return this;

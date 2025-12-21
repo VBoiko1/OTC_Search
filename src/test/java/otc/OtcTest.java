@@ -24,10 +24,10 @@ public class OtcTest extends BaseClass{
                 .waitSearchString()
                 .openCityFilter()
                 .selectCity(config.getProperty("FilterCityKrasnodar"), true)
-                .selectCity("Москва", false)
-                .applyFilter("Краснодар")
-                .setSearchValue("Принтер")
-                .waitSearchCAtalog();
+                .selectCity(config.getProperty("FilterCityMoscow"), false)
+                .applyFilter(config.getProperty("WaitCityKrasnodar"))
+                .setSearchValue(config.getProperty("ProductValue1"))
+                .waitSearchCatalog();
 
         List<Map<String, String>> products =
                 otcCatalogPage

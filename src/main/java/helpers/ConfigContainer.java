@@ -37,7 +37,7 @@ public class ConfigContainer {
                 .getResourceAsStream("otc.properties")) {
 
             if (input == null) {
-                throw new RuntimeException("Файл 'dadata.properties' не найден в classpath");
+                throw new RuntimeException("Файл 'otc.properties' не найден в classpath");
             }
 
             // UTF-8

@@ -2,6 +2,8 @@ package otc;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +20,8 @@ public class OtcCatalogPage {
     // Карточки товаров
     private final ElementsCollection products = $$(PRODUCT_SELECTOR);
 
+    private static final Logger log = LoggerFactory.getLogger(OtcCatalogPage.class);
+
     public OtcCatalogPage waitListProduct() {
         products.shouldBe(sizeGreaterThan(0));
         return this;
@@ -27,7 +31,7 @@ public class OtcCatalogPage {
     public List<Map<String, String>> collectProductsData() {
 
         List<Map<String, String>> result = new ArrayList<>();
-
+        log.debug("Найдено товаров на странице: {}", products.size());
         for (int i = 0; i < products.size(); i++) {
             // Карточка по индексу
             SelenideElement product = products.get(i);
@@ -35,11 +39,12 @@ public class OtcCatalogPage {
             String name = product
                     .$(NAME_SELECTOR)
                     .getText();
+            log.debug("Название товара #{}: {}", i + 1, name);
 
             String price = product
                     .$(PRICE_SELECTOR)
                     .getText();
-
+            log.debug("Цена товара #{}: {}", i + 1, price);
 
             Map<String, String> productData = new HashMap<>();
             productData.put("name", name);
