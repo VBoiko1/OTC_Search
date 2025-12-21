@@ -11,10 +11,10 @@ public class FileUtils {
 
         try (FileWriter writer = new FileWriter(filePath)) {
 
-            // Заголовки
+
             writer.write("name,price\n");
 
-            // Данные
+
             for (Map<String, String> item : data) {
                 writer.write(
                         item.get("name") + "," +
