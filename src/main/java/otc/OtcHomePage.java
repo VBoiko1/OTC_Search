@@ -10,26 +10,26 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class OtcHomePage extends BasePage {
 
-    // Поле [Строка поиска]
-    private final SelenideElement searchString = $(".mantine-Input-input");
+    private final SelenideElement searchString = $(".mantine-Input-input")
+            .as("Строка поиска");
 
-    // Выпадающий список для фильтра по городам
-    private final SelenideElement filterCity = $(".mantine-Center-root");
+    private final SelenideElement filterCity = $(".mantine-Center-root")
+            .as("Фильтр городов");
 
-    //Поиск по городам [Найти город]
-    private final SelenideElement searchCity = $("input[placeholder='Найти город']");
+    private final SelenideElement searchCity = $("input[placeholder='Найти город']")
+            .as("Поиск города");
 
-    // Коллекция всех чекбоксов
-    private final ElementsCollection allCityCheckbox = $$("div.Checkbox-module__fmEfMG__body");
+    private final ElementsCollection allCityCheckbox = $$("div.Checkbox-module__fmEfMG__body")
+            .as("Список городов,чек-боксы");
 
-    //Кнопка "Применить"
-    private final SelenideElement buttonFilled = $x("//button[.//span[text()='Применить']]");
+    private final SelenideElement buttonFilled = $x("//button[.//span[text()='Применить']]")
+            .as("Кнопка Применить");
 
-    //Кнопка "Найти"
-    private final SelenideElement buttonSearch = $x("//button[.//span[text()='Найти']]");
+    private final SelenideElement buttonSearch = $x("//button[.//span[text()='Найти']]")
+            .as("кнопка Найти");
 
-    //Поле фильтра города
-    private final SelenideElement shouldHaveCity = $("div[class*='SeoRegionSelector-module__']");
+    private final SelenideElement shouldHaveCity = $("div[class*='SeoRegionSelector-module__']")
+            .as("Выбранный город");
 
     public OtcHomePage waitSearchString() {
         searchString.shouldBe(visible);
@@ -63,11 +63,11 @@ public class OtcHomePage extends BasePage {
 
     // Выбрать любой город по названию
     public OtcHomePage selectCity(String cityName, Boolean check) {
-        log.info("Выбирает город {}", cityName);
-        log.info("Флаг чек-бокса {}", check);
+        log.info("Выбирает город {}, чек-бокса {}", cityName, check);
 
         allCityCheckbox.findBy(text(cityName))
                 .$("input")
+                .as("Чек-бокс города" + cityName)
                 .shouldBe(visible)
                 .setSelected(check);
 

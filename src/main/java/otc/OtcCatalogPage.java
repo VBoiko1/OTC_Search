@@ -17,8 +17,8 @@ public class OtcCatalogPage extends BasePage {
     private static final String PRODUCT_SELECTOR = "div[itemtype='http://schema.org/Product']";
     private static final String NAME_SELECTOR = "a[itemprop='name']";
     private static final String PRICE_SELECTOR = "h3[itemprop='price']";
-    // Карточки товаров
-    private final ElementsCollection products = $$(PRODUCT_SELECTOR);
+    private final ElementsCollection products = $$(PRODUCT_SELECTOR)
+            .as("Карточки товаров");
 
     public OtcCatalogPage waitListProduct() {
         products.shouldBe(sizeGreaterThan(0));
@@ -47,7 +47,6 @@ public class OtcCatalogPage extends BasePage {
             Map<String, String> productData = new HashMap<>();
             productData.put("name", name);
             productData.put("price", price);
-
 
             result.add(productData);
         }

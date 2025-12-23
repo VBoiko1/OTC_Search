@@ -6,22 +6,18 @@ import java.util.List;
 import java.util.Map;
 
 public class FileUtils {
+    private static final String CSV_HEADER = "name,price\n";
+    private static final String CSV_DELIMITER = ",";
 
     public static void saveToCsv(List<Map<String, String>> data, String filePath) {
-
         try (FileWriter writer = new FileWriter(filePath)) {
-
-
-            writer.write("name,price\n");
-
+            writer.write(CSV_HEADER);
 
             for (Map<String, String> item : data) {
-                writer.write(
-                        item.get("name") + "," +
-                                item.get("price") + "\n"
-                );
+                String name = item.get("name");
+                String price = item.get("price");
+                writer.write(name + CSV_DELIMITER + price + "\n");
             }
-
         } catch (IOException e) {
             throw new RuntimeException("Ошибка записи CSV файла", e);
         }
