@@ -10,19 +10,27 @@ import java.util.Properties;
 
 public class ConfigContainer {
 
-    /** Статическое поле для хранения единственного экземпляра */
+    /**
+     * Статическое поле для хранения единственного экземпляра
+     */
     private static ConfigContainer instance;
 
-    /** Поле для хранения свойств */
+    /**
+     * Поле для хранения свойств
+     */
     private final Properties properties;
 
-    /** Приватный конструктор - нельзя создать извне */
+    /**
+     * Приватный конструктор - нельзя создать извне
+     */
     private ConfigContainer() {
         this.properties = new Properties();
 
     }
 
-    /**  Публичный статический метод для получения экземпляра */
+    /**
+     * Публичный статический метод для получения экземпляра
+     */
     public static synchronized ConfigContainer getInstance() {
         if (instance == null) {
             instance = new ConfigContainer();
@@ -30,11 +38,11 @@ public class ConfigContainer {
         return instance;
     }
 
-    /** Метод загрузки значений */
+    /**
+     * Метод загрузки значений
+     */
     public ConfigContainer loadProperties() {
-        try (InputStream input = getClass()
-                .getClassLoader()
-                .getResourceAsStream("otc.properties")) {
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("otc.properties")) {
 
             if (input == null) {
                 throw new RuntimeException("Файл 'otc.properties' не найден в classpath");
@@ -49,7 +57,6 @@ public class ConfigContainer {
         return this;
     }
 
-
     public void loadConfig(String path) {
         try (InputStream input = new FileInputStream(path)) {
 
@@ -61,7 +68,9 @@ public class ConfigContainer {
         }
     }
 
-    /** Метод для получения значений*/
+    /**
+     * Метод для получения значений
+     */
     public String getProperty(String key) {
         return properties.getProperty(key);
     }

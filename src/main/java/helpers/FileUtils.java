@@ -15,9 +15,7 @@ public class FileUtils {
             for (Map<String, String> item : data) {
                 String name = item.get("name");
                 String price = item.get("price");
-                writer.write(
-                        String.format("\"%s\",\"%s\"%n", name, price)
-                );
+                writer.write(String.format("\"%s\",\"%s\"%n", name, price));
             }
         } catch (IOException e) {
             throw new RuntimeException("Ошибка записи CSV файла", e);

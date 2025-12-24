@@ -10,29 +10,21 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class OtcHomePage extends BasePage {
 
-    private final SelenideElement searchString = $(".mantine-Input-input")
-            .as("Строка поиска");
+    private final SelenideElement searchString = $(".mantine-Input-input").as("Строка поиска");
 
-    private final SelenideElement filterCity = $(".mantine-Center-root")
-            .as("Фильтр городов");
+    private final SelenideElement filterCity = $(".mantine-Center-root").as("Фильтр городов");
 
-    private final SelenideElement searchCity = $("input[placeholder='Найти город']")
-            .as("Поиск города");
+    private final SelenideElement searchCity = $("input[placeholder='Найти город']").as("Поиск города");
 
-    private final ElementsCollection allCityCheckbox = $$("div.Checkbox-module__fmEfMG__body")
-            .as("Список городов,чек-боксы");
+    private final ElementsCollection allCityCheckbox = $$("div.Checkbox-module__fmEfMG__body").as("Список городов,чек-боксы");
 
-    private final SelenideElement buttonFilled = $x("//button[.//span[text()='Применить']]")
-            .as("Кнопка Применить");
+    private final SelenideElement buttonFilled = $x("//button[.//span[text()='Применить']]").as("Кнопка Применить");
 
-    private final SelenideElement buttonSearch = $x("//button[.//span[text()='Найти']]")
-            .as("кнопка Найти");
+    private final SelenideElement buttonSearch = $x("//button[.//span[text()='Найти']]").as("кнопка Найти");
 
-    private final SelenideElement shouldHaveCity = $("div[class*='SeoRegionSelector-module__']")
-            .as("Выбранный город");
+    private final SelenideElement shouldHaveCity = $("div[class*='SeoRegionSelector-module__']").as("Выбранный город");
 
-    private final SelenideElement tabSearch = $x("//span[normalize-space()='Поиск']")
-            .as("Вкладка Поиск");
+    private final SelenideElement tabSearch = $x("//span[normalize-space()='Поиск']").as("Вкладка Поиск");
 
     public OtcHomePage waitSearchString() {
         searchString.shouldBe(visible);
@@ -54,29 +46,29 @@ public class OtcHomePage extends BasePage {
         return this;
     }
 
-    public OtcHomePage waitSearchCity(){
+    public OtcHomePage waitSearchCity() {
         searchCity.shouldBe(visible);
         return this;
 
     }
+
     public OtcHomePage applyFilter() {
         buttonFilled.click();
         return this;
     }
-    public OtcHomePage waitCityFilter(String city){
+
+    public OtcHomePage waitCityFilter(String city) {
         shouldHaveCity.shouldBe(text(city));
         return this;
     }
 
-    /** Выбирает город из списка чек-боксов по названию {cityName} */
+    /**
+     * Выбирает город из списка чек-боксов по названию {cityName}
+     */
     public OtcHomePage selectCity(String cityName, Boolean check) {
         log.info("Выбирает город {}, чек-бокса {}", cityName, check);
 
-        allCityCheckbox.findBy(text(cityName))
-                .$("input")
-                .as("Чек-бокс города" + cityName)
-                .shouldBe(visible)
-                .setSelected(check);
+        allCityCheckbox.findBy(text(cityName)).$("input").as("Чек-бокс города" + cityName).shouldBe(visible).setSelected(check);
 
         return this;
     }

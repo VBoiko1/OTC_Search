@@ -34,7 +34,6 @@ public class BaseClass {
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         // options.addArguments("--incognito");   Режим инкогнито.
 
-        /** Применяем опции к Selenide */
         Configuration.browserCapabilities = options;
     }
 }
