@@ -19,7 +19,7 @@ public class OtcTest extends BaseClass {
     public void openOTCMainPage() {
 
         List<Map<String, String>> productsTable = new ArrayList<>();
-        
+
         String url = "https://otc.ru/";
         open(url);
         otcHomePage
@@ -33,9 +33,7 @@ public class OtcTest extends BaseClass {
                 .setSearchValue(config.getProperty("ProductValue1"))
                 .pressSearch()
                 .waitSearchCatalog();
-
-
-                otcCatalogPage.waitListProduct();
+        otcCatalogPage.waitListProduct();
 
         for (int i = 0; i < otcCatalogPage.getProductsCount(); i++) {
 
@@ -46,7 +44,6 @@ public class OtcTest extends BaseClass {
 
             productsTable.add(row);
         }
-
 
         FileUtils.saveToCsv(productsTable, "target/products.csv");
 
