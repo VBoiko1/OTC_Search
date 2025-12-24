@@ -7,7 +7,6 @@ import java.util.Map;
 
 public class FileUtils {
     private static final String CSV_HEADER = "name,price\n";
-    private static final String CSV_DELIMITER = ",";
 
     public static void saveToCsv(List<Map<String, String>> data, String filePath) {
         try (FileWriter writer = new FileWriter(filePath)) {
@@ -16,7 +15,7 @@ public class FileUtils {
             for (Map<String, String> item : data) {
                 String name = item.get("name");
                 String price = item.get("price");
-                writer.write(name + CSV_DELIMITER + price + "\n");
+                writer.write(String.format("\"%s\",\"%s\"%n", name, price));
             }
         } catch (IOException e) {
             throw new RuntimeException("Ошибка записи CSV файла", e);
