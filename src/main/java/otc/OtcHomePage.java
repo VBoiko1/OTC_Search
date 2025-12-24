@@ -31,35 +31,42 @@ public class OtcHomePage extends BasePage {
     private final SelenideElement shouldHaveCity = $("div[class*='SeoRegionSelector-module__']")
             .as("Выбранный город");
 
+    private final SelenideElement tabSearch = $x("//span[normalize-space()='Поиск']")
+            .as("Вкладка Поиск");
+
     public OtcHomePage waitSearchString() {
         searchString.shouldBe(visible);
         return this;
     }
 
     public OtcHomePage setSearchValue(String product) {
-        searchString.shouldBe(visible);
-        searchString.setValue(product);
-        startSearch();
+        searchString.shouldBe(visible).setValue(product);
         return this;
     }
 
-    public OtcHomePage startSearch() {
+    public OtcHomePage pressSearch() {
         buttonSearch.click();
         return this;
     }
 
     public OtcHomePage openCityFilter() {
         filterCity.click();
-        searchCity.shouldBe(visible);
         return this;
     }
 
-    public OtcHomePage applyFilter(String city) {
+    public OtcHomePage waitSearchCity(){
+        searchCity.shouldBe(visible);
+        return this;
+
+    }
+    public OtcHomePage applyFilter() {
         buttonFilled.click();
+        return this;
+    }
+    public OtcHomePage waitCityFilter(String city){
         shouldHaveCity.shouldBe(text(city));
         return this;
     }
-
 
     // Выбрать любой город по названию
     public OtcHomePage selectCity(String cityName, Boolean check) {
@@ -75,8 +82,7 @@ public class OtcHomePage extends BasePage {
     }
 
     public OtcHomePage waitSearchCatalog() {
-        $x("//span[normalize-space()='Поиск']")
-                .shouldBe(visible);
+        tabSearch.shouldBe(visible);
         return this;
     }
 
