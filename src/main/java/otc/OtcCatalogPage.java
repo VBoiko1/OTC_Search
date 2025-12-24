@@ -25,13 +25,13 @@ public class OtcCatalogPage extends BasePage {
         return this;
     }
 
-    //  Метод сбора данных
+    /** Метод сбора данных */
     public List<Map<String, String>> collectProductsData() {
 
         List<Map<String, String>> result = new ArrayList<>();
         log.debug("Найдено товаров на странице: {}", products.size());
         for (int i = 0; i < products.size(); i++) {
-            // Карточка по индексу
+            /** Карточка по индексу */
             SelenideElement product = products.get(i);
 
             String name = product

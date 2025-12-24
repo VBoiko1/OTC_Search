@@ -68,7 +68,7 @@ public class OtcHomePage extends BasePage {
         return this;
     }
 
-    // Выбрать любой город по названию
+    /** Выбирает город из списка чек-боксов по названию {cityName} */
     public OtcHomePage selectCity(String cityName, Boolean check) {
         log.info("Выбирает город {}, чек-бокса {}", cityName, check);
 
