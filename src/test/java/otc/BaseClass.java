@@ -14,6 +14,12 @@ public class BaseClass {
     OtcHomePage otcHomePage = new OtcHomePage();
     OtcCatalogPage otcCatalogPage = new OtcCatalogPage();
 
+    public BaseClass() {
+        ConfigContainer configContainer = ConfigContainer.getInstance();
+        configContainer.loadProperties();
+        this.config = configContainer;
+    }
+
     @BeforeAll
     public static void setup() {
 
@@ -26,15 +32,9 @@ public class BaseClass {
         options.setExperimentalOption("prefs", prefs);
         options.addArguments("start-maximized");
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-        // options.addArguments("--incognito"); // Режим инкогнито.
+        // options.addArguments("--incognito");   Режим инкогнито.
 
-        // Применяем опции к Selenide
+        /** Применяем опции к Selenide */
         Configuration.browserCapabilities = options;
-    }
-
-    public BaseClass() {
-        ConfigContainer configContainer = ConfigContainer.getInstance();
-        configContainer.loadProperties();
-        this.config = configContainer;
     }
 }

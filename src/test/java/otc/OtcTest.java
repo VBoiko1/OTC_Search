@@ -4,6 +4,8 @@ import helpers.FileUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +17,9 @@ public class OtcTest extends BaseClass {
     @Test
     @DisplayName("Поиск товаров по городу Краснодар и экспорт результатов в CSV")
     public void openOTCMainPage() {
+
+        List<Map<String, String>> productsTable = new ArrayList<>();
+        
         String url = "https://otc.ru/";
         open(url);
         otcHomePage
@@ -29,13 +34,21 @@ public class OtcTest extends BaseClass {
                 .pressSearch()
                 .waitSearchCatalog();
 
-        List<Map<String, String>> products =
-                otcCatalogPage
-                        .waitListProduct()
-                        .collectProductsData();
+
+                otcCatalogPage.waitListProduct();
+
+        for (int i = 0; i < otcCatalogPage.getProductsCount(); i++) {
+
+            var product = otcCatalogPage.getProduct(i);
+            Map<String, String> row = new HashMap<>();
+            row.put("name", otcCatalogPage.getProductName(product));
+            row.put("price", otcCatalogPage.getProductPrice(product));
+
+            productsTable.add(row);
+        }
 
 
-        FileUtils.saveToCsv(products, "target/products.csv");
+        FileUtils.saveToCsv(productsTable, "target/products.csv");
 
     }
 }
