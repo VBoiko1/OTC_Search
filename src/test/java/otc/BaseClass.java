@@ -30,7 +30,8 @@ public class BaseClass {
         prefs.put("profile.default_content_setting_values.geolocation", 2);
 
         options.setExperimentalOption("prefs", prefs);
-        options.addArguments("start-maximized");
+       // options.addArguments("start-maximized");
+        options.addArguments("--start-fullscreen");
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         // options.addArguments("--incognito");   Режим инкогнито.
 

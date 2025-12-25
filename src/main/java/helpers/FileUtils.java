@@ -18,7 +18,7 @@ public class FileUtils {
                 writer.write(String.format("\"%s\",\"%s\"%n", name, price));
             }
         } catch (IOException e) {
-            throw new RuntimeException("Ошибка записи CSV файла", e);
+            throw new RuntimeException("Ошибка записи CSV файла ", e);
         }
     }
 }
