@@ -4,8 +4,8 @@ import helpers.ConfigContainer;
 import helpers.FileUtils;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
-import otc.OtcHomePage;
 import otc.OtcCatalogPage;
+import otc.OtcHomePage;
 
 import java.util.HashMap;
 import java.util.Map;
