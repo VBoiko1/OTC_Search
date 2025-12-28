@@ -11,8 +11,8 @@ import java.util.Map;
 public class BaseClass {
 
     protected final ConfigContainer config;
-    OtcHomePage otcHomePage = new OtcHomePage();
-    OtcCatalogPage otcCatalogPage = new OtcCatalogPage();
+    protected final OtcHomePage otcHomePage = new OtcHomePage();
+    protected final  OtcCatalogPage otcCatalogPage = new OtcCatalogPage();
 
     public BaseClass() {
         ConfigContainer configContainer = ConfigContainer.getInstance();

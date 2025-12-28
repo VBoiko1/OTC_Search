@@ -2,7 +2,6 @@ package otc;
 
 import helpers.FileUtils;
 import org.junit.jupiter.api.*;
-
 import java.util.*;
 
 import static com.codeborne.selenide.Selenide.open;

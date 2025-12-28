@@ -3,17 +3,18 @@ package otc;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import helpers.BasePage;
+import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class OtcCatalogPage extends BasePage {
 
-    private static final String PRODUCT_SELECTOR = "div[itemtype='http://schema.org/Product']";
-    private static final String NAME_SELECTOR = "a[itemprop='name']";
-    private static final String PRICE_SELECTOR = "h3[itemprop='price']";
+    private static final String PRODUCT_CSS = "div[itemtype='http://schema.org/Product']";
+    private static final String PRODUCT_NAME_CSS = "a[itemprop='name']";
+    private static final String PRICE_NAME_CSS = "h3[itemprop='price']";
 
-    private final ElementsCollection products = $$(PRODUCT_SELECTOR)
+    private final ElementsCollection products = $$(PRODUCT_CSS)
             .as("Карточки товаров");
 
     public OtcCatalogPage waitListProduct() {
@@ -43,7 +44,7 @@ public class OtcCatalogPage extends BasePage {
      */
     public String getProductName(SelenideElement product) {
         return product
-                .$(NAME_SELECTOR)
+                .find(By.cssSelector(PRODUCT_NAME_CSS))
                 .as("Название товара")
                 .getText();
     }
@@ -53,7 +54,7 @@ public class OtcCatalogPage extends BasePage {
      */
     public String getProductPrice(SelenideElement product) {
         return product
-                .$(PRICE_SELECTOR)
+                .find(By.cssSelector(PRICE_NAME_CSS))
                 .as("Цена товара")
                 .getText();
     }
